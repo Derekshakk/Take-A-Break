@@ -5,8 +5,11 @@ from tkinter.ttk import *
 import time
 import math
 
+#Installing anaconda:
+#https://learnopencv.com/install-opencv-on-windows/
+
 class Application:
-  def __init__(self, faceTimeAllowed = 1200, restTime = 900, faceDectectionReset = 60):
+  def __init__(self, faceTimeAllowed, restTime, faceDetectionReset):
     '''
       All vars are in seconds
 
@@ -27,7 +30,7 @@ class Application:
     self.root.protocol('WM_DELETE_WINDOW', self.destructor)
 
     # Set up variables
-    self.faceDetectedTimeResetThreshold = faceDectectionReset # in seconds
+    self.faceDetectedTimeResetThreshold = faceDetectionReset # in seconds
     self.faceDetectedMaxTime = faceTimeAllowed # in seconds
     self.breakWindowTime = restTime
 
@@ -237,6 +240,9 @@ class BreakWindow:
 
 
 if __name__ == '__main__':
-  app = Application(faceTimeAllowed = 1200, restTime = 900, faceDectectionReset = 60)
+  faceTimeAllowed = int(input("Enter how many seconds your face has to be shown:"))
+  restTime = int(input("Enter how many seconds your rest time should be:"))
+  faceDetectionReset = int(input("Enter how many seconds the app doesn't see a face before resetting the clock:"))
+  app = Application(faceTimeAllowed, restTime, faceDetectionReset)
   app.root.iconify() # minimized main window
   app.root.mainloop()
